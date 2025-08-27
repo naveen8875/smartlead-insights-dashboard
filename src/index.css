@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cold Email Analytics Dashboard Design System */
+
+/* 
+ * DYNAMIC THEMING SYSTEM
+ * 
+ * This dashboard uses CSS custom properties that are dynamically set from environment variables.
+ * The theme is applied at runtime by src/lib/theme.ts which converts hex colors to HSL values.
+ * 
+ * Environment Variables:
+ * - VITE_BACKGROUND_COLOR: Main background color
+ * - VITE_FOREGROUND_COLOR: Main text color  
+ * - VITE_CARD_BACKGROUND_COLOR: Card background color
+ * - VITE_CARD_FOREGROUND_COLOR: Card text color
+ * - VITE_BRAND_PRIMARY_COLOR: Primary brand color
+ * - VITE_BRAND_SECONDARY_COLOR: Secondary brand color
+ * 
+ * These colors are applied to CSS custom properties like --background, --foreground, etc.
+ */
+
+@layer base {
+  :root {
+    /* Dashboard Background System - Configurable via env vars */
+    --background: 250 250% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --dashboard-bg: 250 250% 97%;
+
+    /* Card System */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --card-shadow: 220 13% 91%;
+
+    /* Brand Colors (Dynamically set from environment variables) */
+    --brand-primary: 217 91% 60%;
+    --brand-secondary: 217 89% 48%;
+    --brand-primary-foreground: 0 0% 100%;
+
+    /* Enhanced Success/Warning/Danger System */
+    --success: 142 76% 36%;
+    /* Professional green */
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 52% 96%;
+
+    --warning: 38 92% 50%;
+    /* Vibrant amber */
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 48 100% 96%;
+
+    --danger: 0 84% 60%;
+    /* Professional red */
+    --danger-foreground: 0 0% 100%;
+    --danger-light: 0 93% 97%;
+
+    /* Professional Grays */
+    --gray-50: 250 250% 98%;
+    --gray-100: 220 14% 96%;
+    --gray-200: 220 13% 91%;
+    --gray-300: 216 12% 84%;
+    --gray-400: 218 11% 65%;
+    --gray-500: 220 9% 46%;
+    --gray-600: 215 14% 34%;
+    --gray-700: 215 25% 27%;
+    --gray-800: 217 33% 17%;
+    --gray-900: 222 84% 5%;
+
+    /* Status Colors */
+    --status-active: 142 76% 36%;
+    --status-paused: 38 92% 50%;
+    --status-stopped: 0 84% 60%;
+
+    /* Chart Colors */
+    --chart-primary: 217 91% 60%;
+    --chart-secondary: 142 76% 36%;
+    --chart-tertiary: 38 92% 50%;
+    --chart-quaternary: 271 81% 56%;
+
+    /* Component Tokens */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: hsl(var(--brand-primary));
+    --primary-foreground: hsl(var(--brand-primary-foreground));
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: hsl(var(--brand-primary));
+    --accent-foreground: hsl(var(--brand-primary-foreground));
+    --destructive: hsl(var(--danger));
+    --destructive-foreground: hsl(var(--danger-foreground));
+    --border: hsl(var(--gray-200));
+    --input: hsl(var(--gray-200));
+    --ring: hsl(var(--brand-primary));
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --dashboard-bg: 222.2 84% 4.9%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-dashboard-bg text-foreground font-inter antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+
+  /* KPI Card Styles */
+  .kpi-card {
+    @apply bg-card rounded-xl shadow-sm border border-border p-6 hover:shadow-md transition-all duration-300;
+  }
+
+  .kpi-value {
+    @apply text-3xl font-bold text-foreground;
+  }
+
+  .kpi-label {
+    @apply text-sm font-medium text-muted-foreground;
+  }
+
+  .kpi-trend-positive {
+    @apply flex items-center text-sm text-success;
+  }
+
+  .kpi-trend-negative {
+    @apply flex items-center text-sm text-danger;
+  }
+
+  /* Status Badge Styles */
+  .status-active {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-light text-success;
+  }
+
+  .status-paused {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning-light text-warning;
+  }
+
+  .status-stopped {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-danger-light text-danger;
+  }
+
+  /* Chart Container */
+  .chart-container {
+    @apply bg-card rounded-xl shadow-sm border border-border p-6;
+  }
+
+  /* Dashboard Animation */
+  .dashboard-slide-in {
+    animation: slideInUp 0.6s ease-out;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Loading Pulse */
+  .loading-pulse {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+}
