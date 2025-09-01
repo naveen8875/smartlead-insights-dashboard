@@ -14,6 +14,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { BrandingLogo } from "@/components/BrandingLogo";
 
 const Index = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -178,6 +179,9 @@ const Index = () => {
         clients={clients}
         selectedClientId={selectedClientId?.toString() || null}
       />
+
+      {/* Branding Logo - Always Visible */}
+      <BrandingLogo />
     </SidebarProvider>
   );
 };
